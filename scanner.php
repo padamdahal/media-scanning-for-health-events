@@ -1,4 +1,8 @@
 <?php
+	if (!defined('APPBASE')) {
+		exit('Not allowed');
+	}
+	
 	global $array;
 	global $keywords;
 	$array = [];
@@ -7,7 +11,7 @@
 	function init(){
 		
 		// Get the json file for feed URLs
-        $string = file_get_contents("feedurls.json");        
+        $string = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json?token=ABDYMGFQXDTLJOPKY2KZN3DAWNHL2");        
         $feedUrls = json_decode($string, true);
 		
 		if(json_last_error() != JSON_ERROR_NONE){

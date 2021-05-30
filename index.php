@@ -1,4 +1,5 @@
 <?php
+	define("APPBASE", true);
 	include('scanner.php');
 	init();
 ?>
