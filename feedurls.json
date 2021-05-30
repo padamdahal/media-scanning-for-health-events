@@ -6,6 +6,13 @@
         "maxPosts": 20,
 		"titleAttribute":"title"
 	},
+	"bbcnepali":{
+        "title": "BBC Nepali",
+        "url": "https://www.bbc.com/nepali",
+        "category":"Page",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
     "onlinekhabar":{
         "title": "Online Khabar",
         "url": "https://www.onlinekhabar.com/feed",
