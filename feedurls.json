@@ -1,0 +1,92 @@
+{
+    "onlinekhabar":{
+        "title": "Online Khabar",
+        "url": "https://www.onlinekhabar.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+    "swasthyakhabar":{
+        "title": "Swasthya Khabar",
+        "url": "https://www.swasthyakhabar.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"nepalnews":{
+        "title": "Nepal News",
+        "url": "https://nepalnews.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"healthaawaj":{
+        "title": "Health Aawaj",
+        "url": "https://www.healthaawaj.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"ratopati":{
+        "title": "Rato Pati",
+        "url": "https://www.ratopati.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"setopati":{
+        "title": "Seto Pati",
+        "url": "http://setopati.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"news24nepal":{
+        "title": "News 24",
+        "url": "https://www.news24nepal.tv/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"etajakhabar":{
+        "title": "eTaja Khabar",
+        "url": "https://www.etajakhabar.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"healthpostnepal":{
+        "title": "Health Post Nepal",
+        "url": "https://www.healthpostnepal.com/feed",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"sancharkendra":{
+        "title": "Sanchar Kendra",
+        "url": "https://sancharkendra.com/",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },"ekantipur":{
+        "title": "E-Kantipur",
+        "url": "https://ekantipur.com",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"annapurnapost":{
+        "title": "Annapurna Post",
+        "url": "http://annapurnapost.com/",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
+	"nagariknews": {
+		"title": "Nagariknews",
+        "url": "https://nagariknews.nagariknetwork.com/",
+        "category":"Technology News",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    }
+}
