@@ -131,7 +131,7 @@
 					<?php
 						foreach($keywords as $word){
 					?>
-					<span>#<?php echo $word;?></span>&nbsp;
+					<span>#<?php echo $keyword = rtrim(ltrim($word));?></span>&nbsp;
 					<?php
 						}
 					?>

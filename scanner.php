@@ -58,7 +58,8 @@
 				$keywordFound == true;
 			}else{
 				foreach ($keywords as $keyword){
-					if(in_array(ltrim($keyword), $titleWords)){
+					$keyword = rtrim(ltrim($keyword));
+					if(in_array($keyword, $titleWords)){
 						$keywordFound = true;
 					}
 				}
@@ -82,7 +83,7 @@
 				$tempItem["link"] = $link;
 				$tempItem["description"] = $description;
 				$tempItem["source"] = $source;
-				$tempItem["pubDate"] = date("Y-m-d H:i", strtotime($pubDate));
+				$tempItem["pubDate"] = date("Y-m-d", strtotime($pubDate));
 				
 				array_push($GLOBALS['array'], $tempItem);
 			}
@@ -129,6 +130,7 @@
 			$titleWords = explode(' ', $i->nodeValue);
 			if(count($titleWords) >= 5){
 				foreach ($keywords as $keyword){
+					$keyword = rtrim(ltrim($keyword));
 					if(in_array($keyword, $titleWords)){
 						$keywordFound = true;
 					}
@@ -146,7 +148,7 @@
 					$tempItem["link"] = $link;
 					$tempItem["description"] = $i->nodeValue;
 					$tempItem["source"] = $source;
-					$tempItem["pubDate"] = date("Y-m-d H:i");
+					$tempItem["pubDate"] = date("Y-m-d");
 					array_push($GLOBALS['array'], $tempItem);
 					//array_push($finalJson, $tempItem);
 				}
