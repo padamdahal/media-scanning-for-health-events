@@ -5,9 +5,11 @@
 	
 	global $array;
 	global $keywords;
+	
 	$array = [];
-	$keywords = array("कोरोना","महामारी","माहामारी","ज्वरो","मृत्यु","मृत्युदर","अज्ञात रोग","प्रकोप","झाडापखाला","हैजा","जङ्गली च्याउ","रेबिज","रेविज","औषधि अभाब","औषधि अभाव","भयावह","विषाक्त मदिरा");
-        	
+	//$keywords = array("कोरोना","महामारी","माहामारी","ज्वरो","मृत्यु","मृत्युदर","अज्ञात रोग","प्रकोप","झाडापखाला","हैजा","जङ्गली च्याउ","रेबिज","रेविज","औषधि अभाब","औषधि अभाव","भयावह","विषाक्त मदिरा");
+    $keywords = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/keywords.txt");        
+	$keywords = explode(',', $keywords);
 	function init(){
 		
 		// Get the json file for feed URLs
