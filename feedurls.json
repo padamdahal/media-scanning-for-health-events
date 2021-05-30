@@ -13,6 +13,13 @@
         "maxPosts": 20,
 		"titleAttribute":"title"
     },
+    "onlinekhabaren":{
+        "title": "Online Khabar English",
+        "url": "https://english.onlinekhabar.com/feed",
+        "category":"Feed",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
     "swasthyakhabar":{
         "title": "Swasthya Khabar",
         "url": "https://www.swasthyakhabar.com/feed",
