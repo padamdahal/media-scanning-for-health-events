@@ -58,7 +58,7 @@
 				$keywordFound == true;
 			}else{
 				foreach ($keywords as $keyword){
-					if(in_array($keyword, $titleWords)){
+					if(in_array(ltrim($keyword), $titleWords)){
 						$keywordFound = true;
 					}
 				}
