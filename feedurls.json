@@ -1,4 +1,11 @@
 {
+	"googlealert":{
+		"title": "Google Alert",
+        "url": "https://www.google.com/alerts/feeds/15148784430948818590/15779105081589042",
+        "category":"Feed",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+	},
     "onlinekhabar":{
         "title": "Online Khabar",
         "url": "https://www.onlinekhabar.com/feed",

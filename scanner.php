@@ -22,8 +22,13 @@
         foreach ($feedUrls as $feedSource => $feedDetail) {
             $feedUrl = $feedDetail['url'];
 			$rssContents = feedScanner($feedUrl);
+			$skipKeywordCheck = false;
+			if($feedSource == 'googlealert'){
+				$skipKeywordCheck = true; //already filtered content
+			}
+			
 			if($rssContents != false){
-				parseFeed($rssContents, $feedDetail['title']);
+				parseFeed($rssContents, $feedDetail['title'], $skipKeywordCheck);
 			}else{
 				pageScanner($feedUrl, $feedDetail['title']);
 			}
@@ -32,7 +37,7 @@
 		//return $rssArray;
 	}
 	
-	function parseFeed($rssContent, $source){
+	function parseFeed($rssContent, $source, $skipKeywordCheck){
 		$keywords = $GLOBALS['keywords'];
         $items;
         if(isset($rssContent->channel->item)){
@@ -47,10 +52,13 @@
             $namespaces = $item->getNamespaces(true);
             $title = (string)$item->title;
 			$titleWords = explode(' ', $title);
-			
-			foreach ($keywords as $keyword){
-				if(in_array($keyword, $titleWords)){
-					$keywordFound = true;
+			if($skipKeywordCheck == true){
+				$keywordFound == true;
+			}else{
+				foreach ($keywords as $keyword){
+					if(in_array($keyword, $titleWords)){
+						$keywordFound = true;
+					}
 				}
 			}
 			
