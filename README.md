@@ -5,3 +5,11 @@ It uses a pre-defined list of feed urls and scanning the home pages to detect po
 
 ## Cons
 * Pretty slow :(
+
+## To-do
+* Speed up the performance
+* Email alerts to listed email address
+* Database to store the relevant event/news
+* User actions to validate the news
+* Auto delete the events that are not validated within defined time
+
