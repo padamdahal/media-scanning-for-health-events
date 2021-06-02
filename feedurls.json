@@ -20,6 +20,13 @@
         "maxPosts": 20,
 		"titleAttribute":"title"
     },
+    "onlinekhabarpage":{
+        "title": "Online Khabar",
+        "url": "https://www.onlinekhabar.com",
+        "category":"Page",
+        "maxPosts": 20,
+		"titleAttribute":"title"
+    },
     "onlinekhabaren":{
         "title": "Online Khabar English",
         "url": "https://english.onlinekhabar.com/feed",
