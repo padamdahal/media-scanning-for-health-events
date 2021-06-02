@@ -21,7 +21,7 @@
 		"titleAttribute":"title"
     },
     "onlinekhabarpage":{
-        "title": "Online Khabar",
+        "title": "Online Khabar (Page)",
         "url": "https://www.onlinekhabar.com",
         "category":"Page",
         "maxPosts": 20,
