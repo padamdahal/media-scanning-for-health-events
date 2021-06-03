@@ -14,28 +14,25 @@
 	init($urlDetail);
 	
 	function init($urlDetail){
-		$skipKeywordCheck = false;
-        $feedUrl = $urlDetail['url'];
-		if($urlDetail['source'] == 'googlealert'){
-			$skipKeywordCheck = true;
-		}
+		$skipKeywordCheck = $urlDetail['skipKeywordCheck'];
+        
 		$rssContents;
-		if($urlDetail['feed']){
-			$rssContents = feedScanner($feedUrl,$urlDetail['title'],$skipKeywordCheck);
+		if($urlDetail['category'] == 'Feed'){
+			$rssContents = feedScanner($urlDetail);
 		}else{
-			$rssContents = pageScanner($feedUrl, $urlDetail['title'],$skipKeywordCheck);
+			$rssContents = pageScanner($urlDetail);
 		}
 		
 		echo(json_encode($GLOBALS['array']));
 	}
 	
-	function feedScanner($feedUrl, $source, $skipKeywordCheck){
-		$error = false;
+	function feedScanner($urlDetail){
 		
-        $rssContent = @simplexml_load_file($feedUrl);
+        $rssContent = @simplexml_load_file($urlDetail['url']);
 		if(false === $rssContent){
-			$rssContent = false; //'error reading '.$feedUrl;
+			$rssContent = false;
 		}
+		
 		$keywords = $GLOBALS['keywords'];
         $items;
         if(isset($rssContent->channel->item)){
@@ -50,7 +47,7 @@
             $namespaces = $item->getNamespaces(true);
             $title = (string)$item->title;
 			$titleWords = explode(' ', $title);
-			if($skipKeywordCheck == true){
+			if($urlDetail['skipKeywordCheck'] == 'true'){
 				$keywordFound == true;
 			}else{
 				
@@ -64,6 +61,9 @@
 			
 			if($keywordFound == true){
 				$link = (string)$item->link;
+				//if(substr($link,0,4) != 'http'){
+				//	$link = $urlDetail['urlBase']+$link;
+				//}  
 				if(isset($item->description)){
 					$description = (string)$item->description;
 				}else if(isset($item->content)){
@@ -76,7 +76,7 @@
 				$tempItem["title"] = $title; 
 				$tempItem["link"] = $link;
 				$tempItem["description"] = $description;
-				$tempItem["source"] = $source;
+				$tempItem["source"] = $urlDetail['title'];
 				$tempItem["pubDate"] = date("Y-m-d", strtotime($pubDate));
 				
 				array_push($GLOBALS['array'], $tempItem);
@@ -84,11 +84,10 @@
         }
 	}
 	
-	function pageScanner($url, $source, $skipKeywordCheck){
+	function pageScanner($urlDetail){
 		$keywords = $GLOBALS['keywords'];
 		$crawledLinks = [];
-		$finalJson = [];
-
+		
 		$crawling = array();
 		$options = array(
 			'http' => array(
@@ -99,30 +98,34 @@
 		
 		$context = stream_context_create($options);
 		$doc = new DomDocument();
-		@$doc->loadHTML(file_get_contents($url, false, $context));
+		@$doc->loadHTML(file_get_contents($urlDetail['url'], false, $context));
 		$links = $doc->getElementsByTagName('a');
-		$pageTitle = getDocTitle($doc, $url);
 		
 		foreach ($links as $i){
 			$keywordFound = false;
 			$titleWords = explode(' ', $i->nodeValue);
 			if(count($titleWords) >= 5){
-				if(!$skipKeywordCheck){
+				if($urlDetail['skipKeywordCheck'] == 'true'){
+					$keywordFound = true;
+				}else{
 					foreach ($keywords as $keyword){
 						$keyword = rtrim(ltrim($keyword));
 						if(in_array($keyword, $titleWords)){
 							$keywordFound = true;
 						}
 					}
-				}else{
-					$keywordFound = true;
 				}
 			}
 			
 			if($keywordFound == true){
 				$link = $i->getAttribute('href');
+				
+				if(substr($link,0,4) != 'http' && $urlDetail['urlBase'] != ""){
+					$link = $urlDetail['urlBase']+$link;
+				}
+				
 				if (ignoreLink($link)) continue;
-				//$link = convertLink($url, $link);
+				
 				if (!in_array($link, $crawledLinks)){
 					array_push($crawledLinks, $link);
 					$crawling[] = $link;
@@ -130,14 +133,12 @@
 					$tempItem["title"] = $i->nodeValue; 
 					$tempItem["link"] = $link;
 					$tempItem["description"] = $i->nodeValue;
-					$tempItem["source"] = $source;
+					$tempItem["source"] = $urlDetail['title'];
 					$tempItem["pubDate"] = date("Y-m-d");
 					array_push($GLOBALS['array'], $tempItem);
-					//array_push($finalJson, $tempItem);
 				}
 			}
 		}
-		//return $finalJson;
 	}
 	
 	function convertLink($site, $path){

@@ -3,12 +3,16 @@
 		"title": "Google Alert",
         "url": "https://www.google.com/alerts/feeds/15148784430948818590/15779105081589042",
         "category":"Feed",
+		"urlBase": "",
+		"skipKeywordCheck": "true",
         "maxPosts": 20,
 		"titleAttribute":"title"
 	},
 	"bbcnepali":{
         "title": "BBC Nepali",
         "url": "https://www.bbc.com/nepali",
+		"urlBase": "https://www.bbc.com/",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -16,6 +20,8 @@
     "onlinekhabar":{
         "title": "Online Khabar",
         "url": "https://www.onlinekhabar.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -23,6 +29,8 @@
     "onlinekhabarpage":{
         "title": "Online Khabar (Page)",
         "url": "https://www.onlinekhabar.com",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -30,6 +38,8 @@
     "onlinekhabaren":{
         "title": "Online Khabar English",
         "url": "https://english.onlinekhabar.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -37,6 +47,8 @@
     "swasthyakhabar":{
         "title": "Swasthya Khabar",
         "url": "https://www.swasthyakhabar.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -44,6 +56,8 @@
 	"nepalnews":{
         "title": "Nepal News",
         "url": "https://nepalnews.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -51,6 +65,8 @@
 	"healthaawaj":{
         "title": "Health Aawaj",
         "url": "https://www.healthaawaj.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -58,6 +74,8 @@
 	"ratopati":{
         "title": "Rato Pati",
         "url": "https://www.ratopati.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -65,6 +83,8 @@
 	"setopati":{
         "title": "Seto Pati",
         "url": "http://setopati.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -72,6 +92,8 @@
 	"news24nepal":{
         "title": "News 24",
         "url": "https://www.news24nepal.tv/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -79,6 +101,8 @@
 	"etajakhabar":{
         "title": "eTaja Khabar",
         "url": "https://www.etajakhabar.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -86,6 +110,8 @@
 	"healthpostnepal":{
         "title": "Health Post Nepal",
         "url": "https://www.healthpostnepal.com/feed",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -93,12 +119,16 @@
 	"sancharkendra":{
         "title": "Sanchar Kendra",
         "url": "https://sancharkendra.com/",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
     },"ekantipur":{
         "title": "E-Kantipur",
         "url": "https://ekantipur.com",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -106,6 +136,8 @@
 	"annapurnapost":{
         "title": "Annapurna Post",
         "url": "http://annapurnapost.com/",
+		"urlBase": "",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
@@ -113,6 +145,8 @@
 	"nagariknews": {
 		"title": "Nagariknews",
         "url": "https://nagariknews.nagariknetwork.com/",
+		"urlBase":"https://nagariknews.nagariknetwork.com/",
+		"skipKeywordCheck": "false",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
