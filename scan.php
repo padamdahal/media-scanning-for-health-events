@@ -1,7 +1,8 @@
 <?php
 	if (!defined('APPBASE')) {
-		exit('Not allowed');
+		//exit('Not allowed');
 	}
+	$urlDetail = $_POST;
 	
 	global $array;
 	global $keywords;
@@ -9,36 +10,32 @@
 	$array = [];
 	$keywords = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/keywords.txt");        
 	$keywords = explode(',', $keywords);
-	function init(){
-		
-		// Get the json file for feed URLs
-        $string = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json?token=ABDYMGFQXDTLJOPKY2KZN3DAWNHL2");        
-        $feedUrls = json_decode($string, true);
-		
-		if(json_last_error() != JSON_ERROR_NONE){
-			exit("Invalid source JSON");
+	
+	init($urlDetail);
+	
+	function init($urlDetail){
+		$skipKeywordCheck = false;
+        $feedUrl = $urlDetail['url'];
+		if($urlDetail['source'] == 'googlealert'){
+			$skipKeywordCheck = true;
+		}
+		$rssContents;
+		if($urlDetail['feed']){
+			$rssContents = feedScanner($feedUrl,$urlDetail['title'],$skipKeywordCheck);
+		}else{
+			$rssContents = pageScanner($feedUrl, $urlDetail['title'],$skipKeywordCheck);
 		}
 		
-        $rssArray = [];
-        foreach ($feedUrls as $feedSource => $feedDetail) {
-            $feedUrl = $feedDetail['url'];
-			$rssContents = feedScanner($feedUrl);
-			$skipKeywordCheck = false;
-			if($feedSource == 'googlealert'){
-				$skipKeywordCheck = true; //already filtered content
-			}
-			
-			if($rssContents != false){
-				parseFeed($rssContents, $feedDetail['title'], $skipKeywordCheck);
-			}else{
-				pageScanner($feedUrl, $feedDetail['title']);
-			}
-		}
-		//print_r($rssArray);
-		//return $rssArray;
+		echo(json_encode($GLOBALS['array']));
 	}
 	
-	function parseFeed($rssContent, $source, $skipKeywordCheck){
+	function feedScanner($feedUrl, $source, $skipKeywordCheck){
+		$error = false;
+		
+        $rssContent = @simplexml_load_file($feedUrl);
+		if(false === $rssContent){
+			$rssContent = false; //'error reading '.$feedUrl;
+		}
 		$keywords = $GLOBALS['keywords'];
         $items;
         if(isset($rssContent->channel->item)){
@@ -63,12 +60,9 @@
 						$keywordFound = true;
 					}
 				}
-				
 			}
 			
 			if($keywordFound == true){
-				//echo $title;
-				
 				$link = (string)$item->link;
 				if(isset($item->description)){
 					$description = (string)$item->description;
@@ -76,7 +70,6 @@
 					$description = (string)$item->content;
 				}
 							
-				//$source = (string)$item->source;
 				$pubDate = (string)$item->pubDate;
 
 				$tempItem = [];
@@ -89,25 +82,9 @@
 				array_push($GLOBALS['array'], $tempItem);
 			}
         }
-		
-		//usort($itemArray, function($a, $b) {
-		//	return strtotime($b['pubDate']) - strtotime($a['pubDate']);
-		//});
-		//print_r($itemArray);
-		//return $itemArray;
 	}
 	
-	function feedScanner($feedUrl){
-		$error = false;
-		
-        $rssContent = @simplexml_load_file($feedUrl);
-		if(false === $rssContent){
-			$rssContent = false; //'error reading '.$feedUrl;
-		}
-		return $rssContent;
-	}
-	
-	function pageScanner($url, $source){
+	function pageScanner($url, $source, $skipKeywordCheck){
 		$keywords = $GLOBALS['keywords'];
 		$crawledLinks = [];
 		$finalJson = [];
@@ -130,13 +107,18 @@
 			$keywordFound = false;
 			$titleWords = explode(' ', $i->nodeValue);
 			if(count($titleWords) >= 5){
-				foreach ($keywords as $keyword){
-					$keyword = rtrim(ltrim($keyword));
-					if(in_array($keyword, $titleWords)){
-						$keywordFound = true;
+				if(!$skipKeywordCheck){
+					foreach ($keywords as $keyword){
+						$keyword = rtrim(ltrim($keyword));
+						if(in_array($keyword, $titleWords)){
+							$keywordFound = true;
+						}
 					}
+				}else{
+					$keywordFound = true;
 				}
 			}
+			
 			if($keywordFound == true){
 				$link = $i->getAttribute('href');
 				if (ignoreLink($link)) continue;
