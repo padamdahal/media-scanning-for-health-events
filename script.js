@@ -17,7 +17,7 @@ $(function(){
 			$.each(data, function(key, detail){
 				$.ajax({
 					method: "POST",
-					url: "scan.php",
+					url: "scan.php?ref="+detail['title'].replaceAll(" ", "-"),
 					data: detail
 				}).done(function(news) {
 					news = JSON.parse(news);
@@ -44,5 +44,5 @@ $(function(){
 	}
 	
 	// Reload the news every 10 minutes
-	setInterval(function(){ init(); }, 60000);
+	setInterval(function(){ init(); }, 600000);
 });

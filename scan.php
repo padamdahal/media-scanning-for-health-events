@@ -125,8 +125,12 @@
 				}else{
 					foreach ($keywords as $keyword){
 						$keyword = rtrim(ltrim($keyword));
-						if(in_array($keyword, $titleWords)){
+						if(strpos($i->nodeValue, $keyword)){
 							$keywordFound = true;
+						}
+						
+						if(in_array($keyword, $titleWords)){
+							//$keywordFound = true;
 						}
 					}
 				}
