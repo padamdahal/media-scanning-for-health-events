@@ -12,7 +12,7 @@
         "title": "BBC Nepali",
         "url": "https://www.bbc.com/nepali",
 		"urlBase": "https://www.bbc.com/",
-		"skipKeywordCheck": "false",
+		"skipKeywordCheck": "true",
         "category":"Page",
         "maxPosts": 20,
 		"titleAttribute":"title"
