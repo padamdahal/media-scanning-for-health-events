@@ -21,7 +21,7 @@
         "title": "Online Khabar",
         "url": "https://www.onlinekhabar.com/feed",
 		"urlBase": "",
-		"skipKeywordCheck": "false",
+		"skipKeywordCheck": "true",
         "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
