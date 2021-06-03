@@ -10,10 +10,10 @@
 	},
 	"bbcnepali":{
         "title": "BBC Nepali",
-        "url": "https://www.bbc.com/nepali",
+        "url": "https://feeds.bbci.co.uk/nepali/rss.xml",
 		"urlBase": "https://www.bbc.com/",
 		"skipKeywordCheck": "false",
-        "category":"Page",
+        "category":"Feed",
         "maxPosts": 20,
 		"titleAttribute":"title"
     },
