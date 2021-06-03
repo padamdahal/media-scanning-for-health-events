@@ -12,7 +12,7 @@ $(function(){
 		
 	function init(){
 		// Get list of urls
-		$.getJSON("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json?token=ABDYMGFQXDTLJOPKY2KZN3DAWNHL2", function(data){
+		$.getJSON("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json", function(data){
 			$("#newsItems").empty();
 			$.each(data, function(key, detail){
 				$.ajax({
