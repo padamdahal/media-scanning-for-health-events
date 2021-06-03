@@ -65,24 +65,19 @@
 			if($urlDetail['skipKeywordCheck'] == 'true'){
 				$keywordFound == true;
 			}else{
-				
 				foreach ($keywords as $keyword){
 					$keyword = rtrim(ltrim($keyword));
-					if(strpos($i->nodeValue, $keyword)){
+					if(strpos($title, $keyword)){
 						$keywordFound = true;
 					}
-						
-					//if(in_array($keyword, $titleWords)){
-					//	$keywordFound = true;
-					//}
 				}
 			}
 			
 			if($keywordFound == true){
 				$link = (string)$item->link;
-				//if(substr($link,0,4) != 'http'){
-				//	$link = $urlDetail['urlBase']+$link;
-				//}  
+				if(substr($link, 0, 4) != 'http' && $urlDetail['urlBase'] != ""){
+					//$link = $urlDetail['urlBase']+$link;
+				} 
 				if(isset($item->description)){
 					$description = (string)$item->description;
 				}else if(isset($item->content)){
@@ -133,10 +128,6 @@
 						if(strpos($i->nodeValue, $keyword)){
 							$keywordFound = true;
 						}
-						
-						if(in_array($keyword, $titleWords)){
-							//$keywordFound = true;
-						}
 					}
 				}
 			}
@@ -144,7 +135,7 @@
 			if($keywordFound == true){
 				$link = $i->getAttribute('href');
 				
-				if(substr($link,0,4) != 'http' && $urlDetail['urlBase'] != ""){
+				if(substr($link, 0, 4) != 'http' && $urlDetail['urlBase'] != ""){
 					$link = $urlDetail['urlBase']+$link;
 				}
 				

@@ -25,7 +25,7 @@ $(function(){
 						
 						var newsBlock = `<div class="item">
 							<header class="entry-header">
-								<h2 class="entry-title"><a href="`+newsItem.link+`">`+newsItem.title+`</a></h2>
+								<h2 class="entry-title"><a target="_blank" href="`+newsItem.link+`">`+newsItem.title+`</a></h2>
 								<span class="meta-date">
 									<time class="entry-date published updated">`+newsItem.pubDate+` | `+newsItem.sourceType+`</time>
 								</span>
