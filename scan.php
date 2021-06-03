@@ -117,7 +117,6 @@
 		$links = $doc->getElementsByTagName('a');
 		
 		foreach ($links as $i){
-			echo $i;
 			$keywordFound = false;
 			$titleWords = explode(' ', $i->nodeValue);
 			if(count($titleWords) >= 5){
