@@ -1,7 +1,15 @@
 <?php
+	
+	if(isset($_GET['debug']) && $_GET['debug'] == 1){
+		define('APPBASE', true);
+		init();
+		print_r($array);
+	}
+	
 	if (!defined('APPBASE')) {
 		exit('Not allowed');
 	}
+
 	
 	global $array;
 	global $keywords;
@@ -9,10 +17,10 @@
 	$array = [];
 	$keywords = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/keywords.txt");        
 	$keywords = explode(',', $keywords);
-	function init(){
-		
+	
+	function init(){	
 		// Get the json file for feed URLs
-        $string = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json?token=ABDYMGFQXDTLJOPKY2KZN3DAWNHL2");        
+        $string = file_get_contents("https://raw.githubusercontent.com/padamdahal/media-scanning-for-health-events/main/feedurls.json");        
         $feedUrls = json_decode($string, true);
 		
 		if(json_last_error() != JSON_ERROR_NONE){

@@ -1,8 +1,23 @@
 <?php
-	if (!defined('APPBASE')) {
-		//exit('Not allowed');
+	
+	// Read the urlDetail from the POST request
+	if(isset($_POST)){
+		$urlDetail = $_POST;
 	}
-	$urlDetail = $_POST;
+	
+	// For testing/debugging
+	if(isset($_GET['debug']) && $_GET['debug'] == 1){
+
+		$testJson = [];
+		$testJson["title"] = "BBC Nepali";
+		$testJson["url"] = "https://www.bbc.com/nepali/";
+		$testJson["urlBase"] = "https://www.bbc.com/";
+		$testJson["skipKeywordCheck"] = "true";
+		$testJson["category"] = "Page";
+		$testJson["maxPosts"] = 20;
+		$testJson["titleAttribute"] = "title";
+		$urlDetail = $testJson;
+	}
 	
 	global $array;
 	global $keywords;
@@ -102,6 +117,7 @@
 		$links = $doc->getElementsByTagName('a');
 		
 		foreach ($links as $i){
+			echo $i;
 			$keywordFound = false;
 			$titleWords = explode(' ', $i->nodeValue);
 			if(count($titleWords) >= 5){
